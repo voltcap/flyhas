@@ -2,6 +2,7 @@ package com.example.flyhas.controller;
 
 import com.example.flyhas.dto.AuthRequest;
 import com.example.flyhas.dto.AuthResponse;
+import com.example.flyhas.dto.CustomerRequest;
 import com.example.flyhas.model.Admin;
 import com.example.flyhas.model.Customer;
 import com.example.flyhas.model.Manager;
@@ -82,9 +83,15 @@ public class AuthController {
     }
 
     // Kayıt endpoint'leri
+
     @PostMapping("/register/customer")
-    public ResponseEntity<String> registerCustomer(@Valid @RequestBody Customer customer) {
-        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+    public ResponseEntity<String> registerCustomer(@Valid @RequestBody CustomerRequest request) {
+        Customer customer = new Customer();
+        customer.setFirstName(request.getFirstName());
+        customer.setLastName(request.getLastName());
+        customer.setEmail(request.getEmail());
+        customer.setPassword(passwordEncoder.encode(request.getPassword()));
+
         customerRepository.save(customer);
         return ResponseEntity.ok("Customer registered successfully!");
     }
