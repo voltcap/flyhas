@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface SeatRepository extends JpaRepository<Seat, Long> {
     List<Seat> findByFlight(Flight flight);
-    Seat findBySeatNumberAndFlight(String seatNumber, Flight flight);
 }
