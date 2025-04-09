@@ -9,15 +9,20 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String seatNumber;  
-    private boolean booked;
+    private String seatNumber; 
+    private boolean booked = false;
 
     @ManyToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSeatNumber() {
